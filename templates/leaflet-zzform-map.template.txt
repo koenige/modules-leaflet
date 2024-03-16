@@ -10,11 +10,7 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="map"></div>
-
-<script src="%%% setting behaviour_path %%%/leaflet%%% setting leaflet_dist_path %%%/leaflet.js"></script>
-%%% condition if setting leaflet_markercluster %%%
-<script src="%%% setting behaviour_path %%%/leaflet-markercluster%%% setting leaflet_dist_path %%%/leaflet.markercluster.js"></script>
-%%% condition endif %%%
+%%% template leaflet-js %%%
 <script src="%%% item geojson %%%"></script>
 <script>
 	%%% template leaflet-tiles-mapbox %%%
