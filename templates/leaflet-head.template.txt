@@ -9,7 +9,7 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 	<link rel="stylesheet" href="%%% setting behaviour_path %%%/leaflet%%% setting leaflet_dist_path %%%/leaflet.css">
-%%% condition if setting leaflet_markercluster %%%
+%%% if setting leaflet_markercluster %%%
 	<link rel="stylesheet" href="%%% setting behaviour_path %%%/leaflet-markercluster%%% setting leaflet_dist_path %%%/MarkerCluster.css">
 	<link rel="stylesheet" href="%%% setting behaviour_path %%%/leaflet-markercluster%%% setting leaflet_dist_path %%%/MarkerCluster.Default.css">
-%%% condition endif %%%
+%%% endif %%%

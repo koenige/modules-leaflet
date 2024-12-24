@@ -34,9 +34,9 @@
 	    .bindPopup('%%% item place %%%');
 
 %%% loop coordinates %%%
-%%% condition if latitude & longitude %%%
+%%% if latitude & longitude %%%
 	L.marker([%%% item latitude %%%, %%% item longitude %%%], {icon: IconParticipant, title: "%%% loop contacts %%%%%% item contact wrap_js_escape %%%%%% loopposition first|middle ", " %%%%%% loop end %%%"}).addTo(map)
 	    .bindPopup('%%% loop contacts %%%%%% item link "<a href=\"%s\">" %%%%%% item contact wrap_js_nl2br %%%%%% item link </a> %%%%%% loopposition first|middle "<br>" %%%%%% loop end %%%');
-%%% condition endif %%%
+%%% endif %%%
 %%% loop end %%%
 </script>

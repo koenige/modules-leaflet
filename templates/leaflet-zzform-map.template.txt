@@ -25,31 +25,31 @@
 		},
 		onEachFeature: function (feature, layer) {
 			var popupText = '<div class="popup"><h2>' +
-%%% condition unless no_further_information %%%
+%%% unless no_further_information %%%
 			'<a href="%%% setting request_uri %%%?show=' + feature.id + '">' + 
-%%% condition endif %%%
+%%% endif %%%
 			feature.properties.title
-%%% condition unless no_further_information %%%
+%%% unless no_further_information %%%
 			 + '</a>' 
-%%% condition endif %%%
+%%% endif %%%
 			 + '</h2>';
 			if (feature.properties.description)
 				popupText += feature.properties.description;
-%%% condition unless no_further_information %%%
+%%% unless no_further_information %%%
 			popupText += "<p class='more'><a href='%%% setting request_uri %%%?show=" + feature.id + "'>%%% text Further Information %%%</a></p>";
-%%% condition endif %%%
+%%% endif %%%
 			popupText += '</div>';
 			layer.bindPopup(popupText);
 		}
 	});
-%%% condition if setting leaflet_markercluster %%%
+%%% if setting leaflet_markercluster %%%
 	var markers = L.markerClusterGroup({maxClusterRadius: 20});
 	markers.addLayer(geoJsonLayer);
 	map.addLayer(markers);
 	map.fitBounds(markers.getBounds(), {maxZoom: 12});
-%%% condition else %%%
+%%% else %%%
 	map.addLayer(geoJsonLayer);
 	map.fitBounds(geoJsonLayer.getBounds(), {maxZoom: 12});
-%%% condition endif %%%
+%%% endif %%%
 
 </script>

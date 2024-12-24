@@ -9,9 +9,9 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <script src="%%% setting behaviour_path %%%/leaflet%%% setting leaflet_dist_path %%%/leaflet.js"></script>
-%%% condition if setting leaflet_markercluster %%%
+%%% if setting leaflet_markercluster %%%
 <script src="%%% setting behaviour_path %%%/leaflet-markercluster%%% setting leaflet_dist_path %%%/leaflet.markercluster.js"></script>
-%%% condition endif %%%
-%%% condition if setting leaflet_fullscreen %%%
+%%% endif %%%
+%%% if setting leaflet_fullscreen %%%
 <script src="%%% setting behaviour_path %%%/leaflet.fullscreen/Control.FullScreen.js"></script>
-%%% condition endif %%%
+%%% endif %%%
