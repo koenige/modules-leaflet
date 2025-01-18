@@ -1,0 +1,32 @@
+# leaflet module
+# URLs or parts of URLs for which errors shall not be logged
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/leaflet
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2025 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+# 
+# begin = check if begin of string is identical; end = check end; all: check full
+#: errorcode	type	string
+#key 0 numeric
+
+# scripts or developer tools that try to include files referenced in .map files
+# that are not on production server
+404	end	/src/core/Util.js
+404	end	/src/core/Class.js
+404	end	/src/core/Events.js
+404	end	/src/geometry/Point.js
+404	end	/src/geometry/Bounds.js
+404	end	/src/geo/LatLngBounds.js
+404	end	/src/geo/LatLng.js
+404	end	/src/geo/crs/CRS.js
+404	end	/src/geo/crs/CRS.Earth.js
+404	end	/src/geo/projection/Projection.SphericalMercator.js
+404	end	/src/geometry/Transformation.js
+404	end	/src/geo/crs/CRS.EPSG3857.js
+404	end	/src/layer/vector/SVG.Util.js
+404	end	/src/core/Browser.js
+404	end	/src/dom/DomEvent.Pointer.js
+404	end	/src/dom/DomEvent.DoubleTap.js
