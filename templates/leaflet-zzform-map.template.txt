@@ -6,7 +6,7 @@
 # https://www.zugzwang.org/modules/leaflet
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2018-2020, 2024 Gustaf Mossakowski
+# @copyright Copyright © 2018-2020, 2024-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="map"></div>
@@ -26,7 +26,7 @@
 		onEachFeature: function (feature, layer) {
 			var popupText = '<div class="popup"><h2>' +
 %%% unless no_further_information %%%
-			'<a href="%%% setting request_uri %%%?show=' + feature.id + '">' + 
+			'<a href="%%% setting request_uri %%%%%% page qsdelimiter %%%show=' + feature.id + '">' + 
 %%% endif %%%
 			feature.properties.title
 %%% unless no_further_information %%%
@@ -36,7 +36,7 @@
 			if (feature.properties.description)
 				popupText += feature.properties.description;
 %%% unless no_further_information %%%
-			popupText += "<p class='more'><a href='%%% setting request_uri %%%?show=" + feature.id + "'>%%% text Further Information %%%</a></p>";
+			popupText += "<p class='more'><a href='%%% setting request_uri %%%%%% page qsdelimiter %%%show=" + feature.id + "'>%%% text Further Information %%%</a></p>";
 %%% endif %%%
 			popupText += '</div>';
 			layer.bindPopup(popupText);
