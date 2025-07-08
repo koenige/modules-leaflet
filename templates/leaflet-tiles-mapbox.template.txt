@@ -5,10 +5,10 @@
 # https://www.zugzwang.org/modules/leaflet
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2024 Gustaf Mossakowski
+# @copyright Copyright © 2024-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 	var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/%%% setting mapbox_user %%%/%%% setting mapbox_style %%%/tiles/512/{z}/{x}/{y}?access_token=%%% setting mapbox_access_token %%%', {
-		maxZoom: 18, tileSize: 512,  zoomOffset: -1,
+		maxZoom: 18, minZoom: 1, tileSize: 512,  zoomOffset: -1,
 		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 	});
