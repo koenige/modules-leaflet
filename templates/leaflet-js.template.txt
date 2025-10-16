@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/leaflet
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2024 Gustaf Mossakowski
+# @copyright Copyright © 2024-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <script src="%%% setting behaviour_path %%%/leaflet%%% setting leaflet_dist_path %%%/leaflet.js"></script>
@@ -13,5 +13,5 @@
 <script src="%%% setting behaviour_path %%%/leaflet-markercluster%%% setting leaflet_dist_path %%%/leaflet.markercluster.js"></script>
 %%% endif %%%
 %%% if setting leaflet_fullscreen %%%
-<script src="%%% setting behaviour_path %%%/leaflet.fullscreen/Control.FullScreen.js"></script>
+%%% script leaflet.fullscreen/Control.FullScreen.js %%%
 %%% endif %%%
