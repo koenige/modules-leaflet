@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/leaflet
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2016-2019, 2022, 2024-2025 Gustaf Mossakowski
+# @copyright Copyright © 2016-2019, 2022, 2024-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 %%% position head %%%
@@ -35,8 +35,8 @@
 
 %%% loop coordinates %%%
 %%% if latitude & longitude %%%
-	L.marker([%%% item latitude %%%, %%% item longitude %%%], {icon: IconParticipant, title: "%%% loop contacts %%%%%% item contact wrap_js_escape %%%%%% loopposition first|middle ", " %%%%%% loop end %%%"}).addTo(map)
-	    .bindPopup('%%% loop contacts %%%%%% item link "<a href=\"%s\">" %%%%%% item contact wrap_js_nl2br %%%%%% item link </a> %%%%%% loopposition first|middle "<br>" %%%%%% loop end %%%');
+	L.marker([%%% item latitude %%%, %%% item longitude %%%], {icon: IconParticipant, title: "%%% loop contacts %%%%%% item contact format=js_escape %%%%%% loopposition first|middle ", " %%%%%% loop end %%%"}).addTo(map)
+	    .bindPopup('%%% loop contacts %%%%%% item link "<a href=\"%s\">" %%%%%% item contact format=js_nl2br %%%%%% item link </a> %%%%%% loopposition first|middle "<br>" %%%%%% loop end %%%');
 %%% endif %%%
 %%% loop end %%%
 </script>
