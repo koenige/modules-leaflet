@@ -1,19 +1,14 @@
 # leaflet module
-# Translations, template
+# Translations
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/leaflet
 #
-# @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2024, 2026 Gustaf Mossakowski
-# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: Zugzwang Project -- contact module\n"
-"POT-Creation-Date: \n"
+"Project-Id-Version: Zugzwang Project -- leaflet module\n"
+"POT-Creation-Date: 2024-03-16 15:27+0000\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -21,6 +16,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/leaflet-zzform-map.template.txt
+#: templates/leaflet-participants-map.template.txt:33
+msgid "Venue"
+msgstr ""
+
+#: templates/leaflet-zzform-map.template.txt:39
 msgid "Further Information"
 msgstr ""
