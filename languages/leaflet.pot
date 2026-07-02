@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/leaflet
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2024 Gustaf Mossakowski
+# @copyright Copyright © 2024, 2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -20,42 +20,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: configuration/settings.cfg
-msgid "path to distribution CSS and JS files in leaflet JS library"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "use leaflet.fullscreen JS library"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "use leaflet markercluster JS library"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "latitude of map center of participant map"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "longitude of map center of participant map"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "initial zoom of participant map"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "access token from mapbox.com"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "style of map from mapbox.com"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "username for map from mapbox.com"
-msgstr ""
 
 #: templates/leaflet-zzform-map.template.txt
 msgid "Further Information"
