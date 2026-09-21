@@ -1,0 +1,26 @@
+{
+    "installing-a-map": [
+        {
+            "title": "Karte einbinden",
+            "language": "de",
+            "package": "leaflet",
+            "filename": "help/Installing a Map-de.md",
+            "identifier": "installing-a-map",
+            "type": "md",
+            "audience": [
+                "programmer"
+            ]
+        },
+        {
+            "title": "Installing a Map",
+            "language": "en",
+            "package": "leaflet",
+            "filename": "help/Installing a Map.md",
+            "identifier": "installing-a-map",
+            "type": "md",
+            "audience": [
+                "programmer"
+            ]
+        }
+    ]
+}

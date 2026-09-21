@@ -1,0 +1,135 @@
+<!--
+# leaflet module
+# installing a map on a page
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/leaflet
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+# Variables
+# audience = programmer
+-->
+
+# Installing a Map
+
+This module embeds interactive maps with [Leaflet](https://leafletjs.com/)
+and Mapbox raster tiles. Often, the map sits in the page footer and shows one
+marker for your address.
+
+## Dependencies
+
+Install both Git submodules:
+
+* `_inc/modules/leaflet` — this module (templates, settings)
+* `www/_behaviour/leaflet` — Leaflet CSS and JavaScript under
+  `/_behaviour/leaflet/`
+
+After cloning, run `git submodule update --init` in the project root (or
+clone with `--recursive`).
+
+Optional plugins (marker clustering, fullscreen) need extra libraries under
+`www/_behaviour/` and the matching settings in `configuration/settings.cfg`
+(`leaflet_markercluster`, `leaflet_fullscreen`).
+
+## Mapbox settings
+
+Create a Mapbox access token and a map style in [Mapbox Studio](https://studio.mapbox.com/).
+Configure these settings (site or module configuration):
+
+| Setting | Purpose |
+|---------|---------|
+| `mapbox_access_token` | Public token (`pk.…`) |
+| `mapbox_user` | Mapbox account user name |
+| `mapbox_style` | Style ID used in `styles/v1/{user}/{style}` |
+
+The template `leaflet-tiles-mapbox` builds the tile layer from these values.
+
+## Page template
+
+Reference the module templates and your theme script from a page template
+(for example the theme’s `page.template.txt`).
+
+In the document `head`, after `%%% page head %%%`, load Leaflet CSS:
+
+	%%% template leaflet-head %%%
+
+Place a map container in the HTML where the map should appear. The element
+`id` must match the first argument of `L.map()` in your script (usually
+`map`):
+
+	<div id="map"></div>
+
+Before `</body>` or `</html>`, load Leaflet and your map initialisation:
+
+	%%% template leaflet-js %%%
+	%%% script yourtheme/map.js %%%
+
+The `script` line resolves to `/_behaviour/yourtheme/map.js` (theme
+`behaviour/map.js`, processed as a zzbrick template).
+
+Example (footer map on every page):
+
+	<footer>
+	…
+	<div id="map"></div>
+	</footer>
+	</div>
+	%%% template leaflet-js %%%
+	%%% script theme/map.js %%%
+
+## Theme JavaScript
+
+Add `behaviour/map.js` in your theme. Include the Mapbox tile layer template,
+then create the map, marker, and view:
+
+	%%% template leaflet-tiles-mapbox %%%
+
+	var map = L.map('map', { zoomControl: false, scrollWheelZoom: false }).addLayer(tiles);
+	new L.Control.Zoom({ position: 'topright' }).addTo(map);
+
+	L.marker([60.1736859, 24.9353442], {title: "%%% setting project %%%"}).addTo(map)
+		.bindPopup('%%% setting project %%%');
+
+	map.setView([60.1736859, 24.9353442], 17);
+
+Replace latitude, longitude, and zoom with your location. You can use
+`%%% setting project %%%` or other settings for popup text.
+
+## CSS: height of `#map`
+
+Leaflet measures the **map container element** (`#map`), not a wrapper around
+it. The container needs an explicit height (or `height: 100%` with a parent
+that has a defined height). Without that, the map area stays empty or only
+shows a background colour on a parent box.
+
+Example:
+
+	footer #map {
+		height: 700px;
+		margin: 6.25rem auto 0;
+	}
+
+Adjust layout (width, grid placement, margins) to match your theme.
+
+## Other map types
+
+* **zzform table on a map** — template `leaflet-zzform-map` (GeoJSON layer,
+  optional marker clustering). See `templates/leaflet-zzform-map.template.txt`.
+* **Event participants** — template `leaflet-participants-map` and
+  `mf_leaflet_participants_map()`; uses `#participants_map` as container id.
+
+## Checklist
+
+1. Submodules `leaflet` (module + behaviour) initialised
+2. Mapbox settings configured
+3. `leaflet-head` in page `head`
+4. `<div id="map"></div>` (or matching id) in the template
+5. `leaflet-js` and theme `map.js` before the end of the page
+6. CSS gives `#map` a usable height
+7. Coordinates and zoom set in `behaviour/map.js`
+
+After changes to templates or JavaScript, reload the page; clear caches if
+your setup uses cached HTML or behaviour files.
