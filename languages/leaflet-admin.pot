@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- leaflet module\n"
-"POT-Creation-Date: 2026-07-24 15:44+0000\n"
+"POT-Creation-Date: 2026-09-22 04:49+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -33,29 +33,49 @@ msgid "Enable Leaflet.fullscreen plugin (fullscreen control)"
 msgstr ""
 
 #: configuration/settings.cfg:31
-msgid "Enable Leaflet.markercluster plugin (cluster markers on maps)"
+msgid "Center latitude for the location map"
 msgstr ""
 
-#: configuration/settings.cfg:35
-msgid "Center latitude for the participants map"
+#: configuration/settings.cfg:36
+msgid "Center longitude for the location map"
 msgstr ""
 
-#: configuration/settings.cfg:40
-msgid "Center longitude for the participants map"
+#: configuration/settings.cfg:41
+msgid "Accessible marker title for the location map"
 msgstr ""
 
 #: configuration/settings.cfg:45
-msgid "Initial zoom level for the participants map"
+msgid "Popup text for the location map marker"
 msgstr ""
 
-#: configuration/settings.cfg:52
-msgid "Mapbox access token"
+#: configuration/settings.cfg:49
+msgid "Initial zoom level for the location map"
 msgstr ""
 
-#: configuration/settings.cfg:57
-msgid "Mapbox style ID (used in styles/v1/{user}/{style})"
+#: configuration/settings.cfg:54
+msgid "Enable Leaflet.markercluster plugin (cluster markers on maps)"
+msgstr ""
+
+#: configuration/settings.cfg:58
+msgid "Center latitude for the participants map"
 msgstr ""
 
 #: configuration/settings.cfg:63
+msgid "Center longitude for the participants map"
+msgstr ""
+
+#: configuration/settings.cfg:68
+msgid "Initial zoom level for the participants map"
+msgstr ""
+
+#: configuration/settings.cfg:75
+msgid "Mapbox access token"
+msgstr ""
+
+#: configuration/settings.cfg:80
+msgid "Mapbox style ID (used in styles/v1/{user}/{style})"
+msgstr ""
+
+#: configuration/settings.cfg:86
 msgid "Mapbox account username (Studio user)"
 msgstr ""

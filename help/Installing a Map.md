@@ -47,28 +47,33 @@ Configure these settings (site or module configuration):
 
 The template `leaflet-tiles-mapbox` builds the tile layer from these values.
 
+## Location map settings
+
+The script `behaviour/location-map.js` (loaded as `%%% script leaflet/location-map.js %%%`)
+initialises a single-marker map in the element `#map`. Configure the position and
+labels in site configuration.
+
 ## Page template
 
-Reference the module templates and your theme script from a page template
+Reference the module templates and the location map script from a page template
 (for example the theme’s `page.template.txt`).
 
 In the document `head`, after `%%% page head %%%`, load Leaflet CSS:
 
 	%%% template leaflet-head %%%
 
-Place a map container in the HTML where the map should appear. The element
-`id` must match the first argument of `L.map()` in your script (usually
-`map`):
+Place a map container in the HTML where the map should appear. The location map
+script expects the element id `map`:
 
 	<div id="map"></div>
 
-Before `</body>` or `</html>`, load Leaflet and your map initialisation:
+Before `</body>` or `</html>`, load Leaflet and the location map script:
 
 	%%% template leaflet-js %%%
-	%%% script yourtheme/map.js %%%
+	%%% script leaflet/location-map.js %%%
 
-The `script` line resolves to `/_behaviour/yourtheme/map.js` (theme
-`behaviour/map.js`, processed as a zzbrick template).
+The `script` line resolves to `/_behaviour/leaflet/location-map.js` (module
+`behaviour/location-map.js`, processed as a zzbrick template).
 
 Example (footer map on every page):
 
@@ -78,25 +83,11 @@ Example (footer map on every page):
 	</footer>
 	</div>
 	%%% template leaflet-js %%%
-	%%% script theme/map.js %%%
+	%%% script leaflet/location-map.js %%%
 
-## Theme JavaScript
-
-Add `behaviour/map.js` in your theme. Include the Mapbox tile layer template,
-then create the map, marker, and view:
-
-	%%% template leaflet-tiles-mapbox %%%
-
-	var map = L.map('map', { zoomControl: false, scrollWheelZoom: false }).addLayer(tiles);
-	new L.Control.Zoom({ position: 'topright' }).addTo(map);
-
-	L.marker([60.1736859, 24.9353442], {title: "%%% setting project %%%"}).addTo(map)
-		.bindPopup('%%% setting project %%%');
-
-	map.setView([60.1736859, 24.9353442], 17);
-
-Replace latitude, longitude, and zoom with your location. You can use
-`%%% setting project %%%` or other settings for popup text.
+For maps with custom behaviour (several markers, other controls), use your own
+script under the theme or a separate module behaviour file instead of
+`location-map.js`.
 
 ## CSS: height of `#map`
 
@@ -125,11 +116,11 @@ Adjust layout (width, grid placement, margins) to match your theme.
 
 1. Submodules `leaflet` (module + behaviour) initialised
 2. Mapbox settings configured
-3. `leaflet-head` in page `head`
-4. `<div id="map"></div>` (or matching id) in the template
-5. `leaflet-js` and theme `map.js` before the end of the page
-6. CSS gives `#map` a usable height
-7. Coordinates and zoom set in `behaviour/map.js`
+3. Location map latitude and longitude configured
+4. `leaflet-head` in page `head`
+5. `<div id="map"></div>` in the template
+6. `leaflet-js` and `leaflet/location-map.js` before the end of the page
+7. CSS gives `#map` a usable height
 
-After changes to templates or JavaScript, reload the page; clear caches if
+After changes to templates, settings, or JavaScript, reload the page; clear caches if
 your setup uses cached HTML or behaviour files.

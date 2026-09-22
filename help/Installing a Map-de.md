@@ -47,28 +47,34 @@ einen Kartenstil an. Diese Einstellungen konfigurieren (Website oder Modul):
 
 Die Vorlage `leaflet-tiles-mapbox` erzeugt daraus die Kachelebene.
 
+## Einstellungen für die Standortkarte
+
+Das Skript `behaviour/location-map.js` (Einbindung mit `%%% script
+leaflet/location-map.js %%%`) initialisiert eine Karte mit einem Marker im
+Element `#map`. Position und Beschriftungen können in der Website-Konfiguration
+gesetzt werden.
+
 ## Seitenvorlage
 
-Modulvorlagen und Ihr Theme-Skript in einer Seitenvorlage einbinden (z. B.
-`page.template.txt` des Themes).
+Modulvorlagen und das Standortkarten-Skript in einer Seitenvorlage einbinden
+(z. B. `page.template.txt` des Themes).
 
 Im Dokument-`head`, nach `%%% page head %%%`, Leaflet-CSS laden:
 
 	%%% template leaflet-head %%%
 
-An der gewünschten Stelle im HTML einen Karten-Container setzen. Die `id`
-muss zum ersten Argument von `L.map()` im Skript passen (üblicherweise
-`map`):
+An der gewünschten Stelle im HTML einen Karten-Container setzen. Das
+Standortkarten-Skript erwartet die Element-`id` `map`:
 
 	<div id="map"></div>
 
-Vor `</body>` bzw. `</html>` Leaflet und Ihre Karten-Initialisierung laden:
+Vor `</body>` bzw. `</html>` Leaflet und das Standortkarten-Skript laden:
 
 	%%% template leaflet-js %%%
-	%%% script yourtheme/map.js %%%
+	%%% script leaflet/location-map.js %%%
 
-Die Zeile `script` verweist auf `/_behaviour/yourtheme/map.js` (Theme-Datei
-`behaviour/map.js`, als zzbrick-Vorlage verarbeitet).
+Die Zeile `script` verweist auf `/_behaviour/leaflet/location-map.js`
+(Modul-Datei `behaviour/location-map.js`, als zzbrick-Vorlage verarbeitet).
 
 Beispiel (Karte im Fuß auf jeder Seite):
 
@@ -78,25 +84,11 @@ Beispiel (Karte im Fuß auf jeder Seite):
 	</footer>
 	</div>
 	%%% template leaflet-js %%%
-	%%% script theme/map.js %%%
+	%%% script leaflet/location-map.js %%%
 
-## Theme-JavaScript
-
-Im Theme `behaviour/map.js` anlegen. Zuerst die Mapbox-Kacheln, dann Karte,
-Marker und Ansicht:
-
-	%%% template leaflet-tiles-mapbox %%%
-
-	var map = L.map('map', { zoomControl: false, scrollWheelZoom: false }).addLayer(tiles);
-	new L.Control.Zoom({ position: 'topright' }).addTo(map);
-
-	L.marker([60.1736859, 24.9353442], {title: "%%% setting project %%%"}).addTo(map)
-		.bindPopup('%%% setting project %%%');
-
-	map.setView([60.1736859, 24.9353442], 17);
-
-Breiten- und Längengrad sowie Zoom anpassen. Für Pop-up-Texte können Sie
-`%%% setting project %%%` oder andere Einstellungen nutzen.
+Für Karten mit eigenem Verhalten (mehrere Marker, andere Steuerung) ein
+eigenes Skript im Theme oder eine andere Modul-Behaviour-Datei statt
+`location-map.js` verwenden.
 
 ## CSS: Höhe von `#map`
 
@@ -125,11 +117,11 @@ Breite, Raster und Abstände an Ihr Theme anpassen.
 
 1. Submodule `leaflet` (Modul + Behaviour) initialisiert
 2. Mapbox-Einstellungen gesetzt
-3. `leaflet-head` im Seiten-`head`
-4. `<div id="map"></div>` (oder passende `id`) in der Vorlage
-5. `leaflet-js` und Theme-`map.js` am Seitenende
-6. CSS vergibt `#map` eine sinnvolle Höhe
-7. Koordinaten und Zoom in `behaviour/map.js`
+3. Breiten- und Längengrad für die Standortkarte gesetzt
+4. `leaflet-head` im Seiten-`head`
+5. `<div id="map"></div>` in der Vorlage
+6. `leaflet-js` und `leaflet/location-map.js` am Seitenende
+7. CSS vergibt `#map` eine sinnvolle Höhe
 
-Nach Änderungen an Vorlagen oder JavaScript Seite neu laden; bei gecachtem
-HTML oder Behaviour ggf. Cache leeren.
+Nach Änderungen an Vorlagen, Einstellungen oder JavaScript Seite neu laden; bei
+gecachtem HTML oder Behaviour ggf. Cache leeren.
