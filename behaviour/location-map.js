@@ -13,6 +13,8 @@
 
 %%% template leaflet-tiles-mapbox %%%
 
+L.Icon.Default.imagePath = '%%% setting behaviour_path %%%/leaflet%%% setting leaflet_dist_path %%%/images/';
+
 var map = L.map('map', { zoomControl: false, scrollWheelZoom: false }).addLayer(tiles);
 new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
