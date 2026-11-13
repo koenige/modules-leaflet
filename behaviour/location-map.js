@@ -16,12 +16,25 @@
 L.Icon.Default.imagePath = '%%% setting behaviour_path %%%/leaflet%%% setting leaflet_dist_path %%%/images/';
 
 var map = L.map('map', { zoomControl: false, scrollWheelZoom: false }).addLayer(tiles);
-new L.Control.Zoom({ position: 'topright' }).addTo(map);
+new L.Control.Zoom({
+	position: 'topright',
+	zoomInTitle: "%%% text Zoom in %%%",
+	zoomOutTitle: "%%% text Zoom out %%%"
+}).addTo(map);
 
 L.marker(
 	[%%% setting leaflet_location_map_center_lat %%%, %%% setting leaflet_location_map_center_lon %%%],
-	{title: "%%% setting leaflet_location_map_title %%%"}
+	{
+		title: "%%% setting leaflet_location_map_title %%%",
+		alt: "%%% setting leaflet_location_map_title %%%"
+	}
 ).addTo(map)
 	.bindPopup('%%% setting leaflet_location_map_popup %%%');
+
+map.on('popupopen', function (event) {
+	var button = event.popup.getElement().querySelector('.leaflet-popup-close-button');
+	if (!button) return;
+	button.setAttribute('aria-label', "%%% text Close popup %%%");
+});
 
 map.setView([%%% setting leaflet_location_map_center_lat %%%, %%% setting leaflet_location_map_center_lon %%%], %%% setting leaflet_location_map_zoom %%%);
