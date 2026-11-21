@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/leaflet
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2016-2019, 2022, 2024 Gustaf Mossakowski
+ * @copyright Copyright © 2016-2019, 2022, 2024-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -19,14 +19,15 @@
  *
  * @param array $map settings for map
  *		array contact_fields
- *		array area_fields
- *		string area
+ *		array route_fields values passed to wrap_path()
+ *		string route key for wrap_path(); `area` is deprecated
  *		array static_fields (optional)
  * @param array $data
  * @return string
  */
 function mf_leaflet_participants_map($map, $data) {
 	if (!$data) return '';
+	$map = mf_leaflet_participants_map_route($map);
 	foreach ($data as $line) {
 		$coord = $line['latitude'].'/'.$line['longitude'];
 		if (!empty($map['contact_fields'])) {
@@ -37,16 +38,16 @@ function mf_leaflet_participants_map($map, $data) {
 			}
 			$line['contact'] = implode(' ', $contact);
 		}
-		if (!empty($map['area_fields'])) {
+		if (!empty($map['route_fields'])) {
 			$path_values = [];
-			foreach ($map['area_fields'] as $field) {
+			foreach ($map['route_fields'] as $field) {
 				if (empty($line[$field])) {
 					if (empty($map['static_fields'][$field])) continue;
 					$line[$field] = $map['static_fields'][$field];
 				}
 				$path_values[] = $line[$field];
 			}
-			$line['link'] = wrap_path($map['area'], $path_values);
+			$line['link'] = wrap_path($map['route'], $path_values);
 		}
 		if (empty($map['coordinates'][$coord])) {
 			$map['coordinates'][$coord]['latitude'] = $line['latitude'];
@@ -62,4 +63,31 @@ function mf_leaflet_participants_map($map, $data) {
 	$map['center_lon'] = $map['center_lon'] ?? wrap_setting('leaflet_participants_map_center_lon');
 	$map['coordinates'] = array_values($map['coordinates']);
 	return wrap_template('leaflet-participants-map', $map);
+}
+
+/**
+ * accept deprecated map keys area and area_fields
+ *
+ * @param array $map
+ * @return array
+ */
+function mf_leaflet_participants_map_route($map) {
+	static $noted = [];
+	$rename = [
+		'area' => 'route',
+		'area_fields' => 'route_fields'
+	];
+	foreach ($rename as $old => $new) {
+		if (!array_key_exists($old, $map)) continue;
+		if (!array_key_exists($new, $map))
+			$map[$new] = $map[$old];
+		unset($map[$old]);
+		if (!empty($noted[$old])) continue;
+		$noted[$old] = true;
+		wrap_error(sprintf(
+			'participants map: key `%s` is deprecated, use `%s`',
+			$old, $new
+		), E_USER_DEPRECATED);
+	}
+	return $map;
 }
