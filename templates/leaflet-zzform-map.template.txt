@@ -6,50 +6,53 @@
 # https://www.zugzwang.org/modules/leaflet
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2018-2020, 2024-2025 Gustaf Mossakowski
+# @copyright Copyright © 2018-2020, 2024-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div id="map"></div>
 %%% template leaflet-js %%%
-<script src="%%% item geojson %%%"></script>
 <script>
 	%%% template leaflet-tiles-mapbox %%%
 
 	var map = L.map('map').addLayer(tiles);
-	var geoJsonLayer = L.geoJson(locations, {
-		pointToLayer: function(feature, latlng) {
-			return L.marker(latlng, {
-				title: feature.properties.title,
-				link: feature.id
-			});
-		},
-		onEachFeature: function (feature, layer) {
-			var popupText = '<div class="popup"><h2>' +
+	fetch('%%% item geojson %%%')
+		.then(function (response) { return response.json(); })
+		.then(function (locations) {
+		var geoJsonLayer = L.geoJson(locations, {
+			pointToLayer: function(feature, latlng) {
+				return L.marker(latlng, {
+					title: feature.properties.title,
+					link: feature.id
+				});
+			},
+			onEachFeature: function (feature, layer) {
+				var popupText = '<div class="popup"><h2>' +
 %%% unless no_further_information %%%
-			'<a href="%%% setting request_uri %%%%%% page qsdelimiter %%%show=' + feature.id + '">' + 
+				'<a href="%%% setting request_uri %%%%%% page qsdelimiter %%%show=' + feature.id + '">' + 
 %%% endif %%%
-			feature.properties.title
+				feature.properties.title
 %%% unless no_further_information %%%
-			 + '</a>' 
+				 + '</a>' 
 %%% endif %%%
-			 + '</h2>';
-			if (feature.properties.description)
-				popupText += feature.properties.description;
+				 + '</h2>';
+				if (feature.properties.description)
+					popupText += feature.properties.description;
 %%% unless no_further_information %%%
-			popupText += "<p class='more'><a href='%%% setting request_uri %%%%%% page qsdelimiter %%%show=" + feature.id + "'>%%% text Further Information %%%</a></p>";
+				popupText += "<p class='more'><a href='%%% setting request_uri %%%%%% page qsdelimiter %%%show=" + feature.id + "'>%%% text Further Information %%%</a></p>";
 %%% endif %%%
-			popupText += '</div>';
-			layer.bindPopup(popupText);
-		}
-	});
+				popupText += '</div>';
+				layer.bindPopup(popupText);
+			}
+		});
 %%% if setting leaflet_markercluster %%%
-	var markers = L.markerClusterGroup({maxClusterRadius: 20});
-	markers.addLayer(geoJsonLayer);
-	map.addLayer(markers);
-	map.fitBounds(markers.getBounds(), {maxZoom: 12});
+		var markers = L.markerClusterGroup({maxClusterRadius: 20});
+		markers.addLayer(geoJsonLayer);
+		map.addLayer(markers);
+		map.fitBounds(markers.getBounds(), {maxZoom: 12});
 %%% else %%%
-	map.addLayer(geoJsonLayer);
-	map.fitBounds(geoJsonLayer.getBounds(), {maxZoom: 12});
+		map.addLayer(geoJsonLayer);
+		map.fitBounds(geoJsonLayer.getBounds(), {maxZoom: 12});
 %%% endif %%%
+		});
 
 </script>

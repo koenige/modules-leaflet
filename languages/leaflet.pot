@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- leaflet module\n"
-"POT-Creation-Date: 2026-11-13 12:28+0000\n"
+"POT-Creation-Date: 2026-11-27 09:46+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -32,6 +32,6 @@ msgstr ""
 msgid "Venue"
 msgstr ""
 
-#: templates/leaflet-zzform-map.template.txt:39
+#: templates/leaflet-zzform-map.template.txt:41
 msgid "Further Information"
 msgstr ""
